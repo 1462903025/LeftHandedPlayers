@@ -27,17 +27,17 @@ namespace LeftHandedPlayers.Commands
         public string Command => "lefthanded";
 
         /// <inheritdoc />
-        public string[] Aliases { get; } = { "left", "lefthand" };
+        public string[] Aliases { get; } = { "left", "right" };
 
         /// <inheritdoc />
-        public string Description => "Makes you left handed";
+        public string Description => "让你成为左撇子";
 
         /// <inheritdoc />
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             if (!(Player.Get(sender) is Player player))
             {
-                response = "This command can only be used in game.";
+                response = "此命令只能在游戏中使用";
                 return false;
             }
 
@@ -45,13 +45,13 @@ namespace LeftHandedPlayers.Commands
             {
                 player.Scale = Vector3.Scale(player.Scale, LeftHandedCollection.ScaleVector);
                 plugin.LeftHandedCollection.Add(player);
-                response = "You are now left handed";
+                response = "你现在是左撇子了";
                 return true;
             }
 
             player.Scale = Vector3.Scale(player.Scale, LeftHandedCollection.ScaleVector);
             plugin.LeftHandedCollection.Remove(player);
-            response = "You are no longer left handed";
+            response = "你不再是左撇子了";
             return true;
         }
     }
